@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 models = ['1B', '4B', '27B']
 
 # Original throughput values
-group_0 = [101.952, 71.67, 22.825]
-group_mps = [107.886, 74.658, 21.008]
-group_2 = [90.392, 73.427, 30.967]
+group_0 = [98.003, 73.552, 20.309]
+group_mps = [103.003, 78.137, 20.958]
+group_2 = [81.991, 71.962, 29.776]
 
 # Normalize to Group 0
 normalized_mps = [m / g0 for m, g0 in zip(group_mps, group_0)]
@@ -21,13 +21,14 @@ fig, ax = plt.subplots(figsize=(8, 5))
 ax.plot(models, normalized_mps, 'o--', label='MPS', color='lightgreen')
 ax.plot(models, normalized_2, 'o--', label='GM-Share', color='lightcoral')
 # ax.plot(models, baseline, 'o--', label='Naive', color='skyblue')
-ax.axhline(y=1.0, color='black', linestyle='dotted', linewidth=1, label='Naive')
+ax.axhline(y=1.0, color='black', linestyle='dotted', linewidth=1, label='Time-slice')
 
 # Labels and formatting
-ax.set_ylabel('Normalized Throughput')
+ax.set_xlabel('Model Size', fontsize=18)
+ax.set_ylabel('Normalized Throughput', fontsize=18)
 # ax.set_title('Normalized Throughput Comparison by Model')
-ax.set_ylim(0.8, 1.4)
-ax.legend()
+ax.set_ylim(0.8, 1.8)
+ax.legend(fontsize=16)
 
 # ax.legend(loc='lower center', bbox_to_anchor=(0.5, 1.02), ncol=6, fontsize='medium')
 
